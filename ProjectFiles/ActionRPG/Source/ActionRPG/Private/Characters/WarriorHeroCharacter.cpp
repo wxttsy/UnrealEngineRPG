@@ -66,13 +66,11 @@ void AWarriorHeroCharacter::Input_Move(const FInputActionValue& InputActionValue
 
 	if (MovementVector.Y != 0.f) {
 		const FVector ForwardDirection = MovementRotation.RotateVector(FVector::ForwardVector);
-		Debug::Print(TEXT("Move forawrd/bak"));
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 	}
 
 	if (MovementVector.X != 0.f) {
 		const FVector RightDirection = MovementRotation.RotateVector(FVector::RightVector);
-		Debug::Print(TEXT("Move left/Right"));
 		AddMovementInput(RightDirection, MovementVector.X);
 	}
 }

@@ -1,16 +1,17 @@
 // Sylbie All Rights Reserved
 
+
 #pragma once
 
 #include "CoreMinimal.h"
 #include "AnimInstances/WarriorCharacterAnimInstance.h"
 #include "WarriorHeroAnimInstance.generated.h"
 
-class AWarriorBaseCharacter;
-class UCharacterMovementComponent;
+class AWarriorHeroCharacter;
 /**
- * 
+ *
  */
+ 
 UCLASS()
 class ACTIONRPG_API UWarriorHeroAnimInstance : public UWarriorCharacterAnimInstance
 {
@@ -21,13 +22,14 @@ public:
 	virtual void NativeThreadSafeUpdateAnimation(float DeltaSeconds) override;
 
 protected:
-	UPROPERTY()
-	AWarriorBaseCharacter* OwningCharacter;
-	UPROPERTY()
-	UCharacterMovementComponent* OwningMovementComponent;
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|References")
+	AWarriorHeroCharacter* OwningHeroCharacter;
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomotionData")
-	float GroundSpeed;
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomotionData")
-	bool bHasAcceleration;
+	bool bShouldEnterRelaxedState;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "AnimData|LocomotionData")
+	float EnterRelaxStateThreshold = 5.f;
+
+	float IdleElapsedTime;
 };
